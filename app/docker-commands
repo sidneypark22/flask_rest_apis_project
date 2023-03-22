@@ -1,0 +1,13 @@
+docker build -t rest-apis-flask-python
+docker run -d -p 5005:5000 rest-apis-flask-python
+
+docker build -t flask-smorest-api .
+docker run -d -p 5005:5000 flask-smorest-api
+
+docker build -t flask-app-api .
+# Any changes in the code (or files) are immediately reflected to docker container.
+docker run -d -p 5005:5000 -w /app -v "$(pwd):/app" flask-app-api
+
+docker run -d -p 5005:5000 -w /app -v "$(pwd):/app" --name flask-app flask-app-api
+docker start flask-app
+docker stop flask-app

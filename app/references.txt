@@ -1,0 +1,17 @@
+ebook:
+https://rest-apis-flask.teclado.com/docs/course_intro/
+https://rest-apis-flask.teclado.com/
+
+Docker:
+https://rest-apis-flask.teclado.com/docs/docker_intro/in_depth_docker_tutorial/
+
+Authentication with flask_jwt_extended
+https://rest-apis-flask.teclado.com/docs/flask_jwt_extended/section_changes/
+What is JWT
+https://rest-apis-flask.teclado.com/docs/flask_jwt_extended/what_is_a_jwt/
+Flsk database migration - why use database migrations?
+https://rest-apis-flask.teclado.com/docs/flask_migrate/why_use_database_migrations/
+
+
+code-repo:
+https://github.com/tecladocode/rest-apis-flask-python
