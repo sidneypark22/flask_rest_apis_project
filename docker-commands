@@ -11,3 +11,7 @@ docker run -d -p 5005:5000 -w /app -v "$(pwd):/app" flask-app-api
 docker run -d -p 5005:5000 -w /app -v "$(pwd):/app" --name flask-app flask-app-api
 docker start flask-app
 docker stop flask-app
+
+# Run Dockerfile locally
+
+docker run -dp 5000:5000 -w /app -v "$(pwd):/app" IMAGE_NAME sh -c "flask run"
