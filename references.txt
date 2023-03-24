@@ -11,6 +11,8 @@ What is JWT
 https://rest-apis-flask.teclado.com/docs/flask_jwt_extended/what_is_a_jwt/
 Flsk database migration - why use database migrations?
 https://rest-apis-flask.teclado.com/docs/flask_migrate/why_use_database_migrations/
+Deploy To Render.com
+https://rest-apis-flask.teclado.com/docs/deploy_to_render/section_overview/
 
 
 code-repo:
