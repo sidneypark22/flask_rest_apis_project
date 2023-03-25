@@ -15,7 +15,7 @@ from resources.tag import blp as TagBlueprint
 from resources.user import blp as UserBlueprint
 from datetime import timedelta
 
-def create_app(db_url=None):
+def create_app(db_url=None, testing: bool = True):
     app = Flask(__name__)
 
     app.config['PROPAGATE_EXCEPTIONS'] = True

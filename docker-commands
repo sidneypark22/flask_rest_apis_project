@@ -14,4 +14,28 @@ docker stop flask-app
 
 # Run Dockerfile locally
 
-docker run -dp 5000:5000 -w /app -v "$(pwd):/app" IMAGE_NAME sh -c "flask run"
+docker run -dp 5005:5000 -w /app -v "$(pwd):/app" --name flask-app flask-app-api sh -c "flask run"
+
+docker run -d -p 5005:5000 -w /app -v "$(pwd):/app" --name flask-app flask-app-api sh -c "flask run"
+
+docker exec -it flask-app sh
+
+gunicorn --bind 0.0.0.0:80 app:create_app()
+
+CMD ["flask", "run", "--host", "0.0.0.0"]
+
+flask run --host 0.0.0.0:5005
+
+gunicorn --bind 127.0.0.1:8000 app:create_app()
+
+gunicorn --bind -w 4 wsgi:app
+
+CMD ["gunicorn", "--bind", "0.0.0.0:80", "--workers=4", "wsgi:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:80", "'app:create_app()'"]
+
+gunicorn --bind 0.0.0.0:80 "app:create_app()"
+
+
+gunicorn -w 4 -b 0.0.0.0:80 "app:create_app()"
+
+gunicorn -w 4 "app:create_app(Testing=False)"
