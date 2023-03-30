@@ -9,14 +9,21 @@ docker build -t flask-app-api .
 docker run -d -p 5005:5000 -w /app -v "$(pwd):/app" flask-app-api
 
 docker run -d -p 5005:5000 -w /app -v "$(pwd):/app" --name flask-app flask-app-api
+docker run -d -p 5005:80 -w /app -v "$(pwd):/app" --name flask-app flask-app-api
 docker start flask-app
 docker stop flask-app
 
 # Run Dockerfile locally
 
-docker run -dp 5005:5000 -w /app -v "$(pwd):/app" --name flask-app flask-app-api sh -c "flask run"
-
+docker run -dp 5005:5000 -w /app -v "$(pwd):/app" --name flask-app flask-app-api sh -c "flask run --host 0.0.0.0"
 docker run -d -p 5005:5000 -w /app -v "$(pwd):/app" --name flask-app flask-app-api sh -c "flask run"
+docker run -w /app --name flask-app-redis flask-app-api sh -c "rq worker -u rediss://red-cghclgo2qv23kcq1nb7g:IbePkPFd6W8YMhR534NGch9GTfto7Vcv@singapore-redis.render.com:6379 emails"
+
+
+
+rediss://red-cghclgo2qv23kcq1nb7g:IbePkPFd6W8YMhR534NGch9GTfto7Vcv@singapore-redis.render.com:6379
+rediss://red-cghclgo2qv23kcq1nb7g:IbePkPFd6W8YMhR534NGch9GTfto7Vcv@singapore-redis.render.com:6379
+
 
 docker exec -it flask-app sh
 
@@ -34,8 +41,5 @@ CMD ["gunicorn", "--bind", "0.0.0.0:80", "--workers=4", "wsgi:app"]
 CMD ["gunicorn", "--bind", "0.0.0.0:80", "'app:create_app()'"]
 
 gunicorn --bind 0.0.0.0:80 'app:create_app()'
-
-
 gunicorn -w 4 -b 0.0.0.0:80 "app:create_app()"
-
 gunicorn -w 4 "app:create_app(Testing=False)"
