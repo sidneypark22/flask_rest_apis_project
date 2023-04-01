@@ -17,12 +17,7 @@ docker stop flask-app
 
 docker run -dp 5005:5000 -w /app -v "$(pwd):/app" --name flask-app flask-app-api sh -c "flask run --host 0.0.0.0"
 docker run -d -p 5005:5000 -w /app -v "$(pwd):/app" --name flask-app flask-app-api sh -c "flask run"
-docker run -w /app --name flask-app-redis flask-app-api sh -c "rq worker -u rediss://red-cghclgo2qv23kcq1nb7g:IbePkPFd6W8YMhR534NGch9GTfto7Vcv@singapore-redis.render.com:6379 emails"
-
-
-
-rediss://red-cghclgo2qv23kcq1nb7g:IbePkPFd6W8YMhR534NGch9GTfto7Vcv@singapore-redis.render.com:6379
-rediss://red-cghclgo2qv23kcq1nb7g:IbePkPFd6W8YMhR534NGch9GTfto7Vcv@singapore-redis.render.com:6379
+docker run -w /app --name flask-app-redis flask-app-api sh -c "rq worker -u REDIS_URL emails"
 
 
 docker exec -it flask-app sh
