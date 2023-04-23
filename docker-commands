@@ -8,17 +8,37 @@ docker build -t flask-app-api .
 # Any changes in the code (or files) are immediately reflected to docker container.
 docker run -d -p 5005:5000 -w /app -v "$(pwd):/app" flask-app-api
 
+#flask-app
+docker run --net flask-app-network --name flask-app -d -p 5005:5000 -w /app -v "$(pwd):/app" flask-app-api
+docker run --name flask-app -d -p 5005:5000 -w /app -v "$(pwd):/app" flask-app-api
 docker run -d -p 5005:5000 -w /app -v "$(pwd):/app" --name flask-app flask-app-api
+docker run -d -p 5005:5000 -p 5433:5432 -w /app -v "$(pwd):/app" --name flask-app flask-app-api
 docker run -d -p 5005:80 -w /app -v "$(pwd):/app" --name flask-app flask-app-api
 docker start flask-app
 docker stop flask-app
+
+#postgres
+docker run --net flask-app-network --name postgres -p 5433:5432 -e POSTGRES_PASSWORD=Passw0rd9 -d postgres
+docker run -d -p 5433:5432 -e POSTGRES_PASSWORD=Passw0rd9 -v "$(pwd)/postgres-data:/var/lib/postgresql/data" --name postgres postgres
+docker run --net flask-app-network --name postgres -d -p 5433:5432 -e POSTGRES_PASSWORD=Passw0rd9 -v "$(pwd)/postgres-data:/var/lib/postgresql/data" postgres
+
+docker-compose -p flask-app up
 
 # Run Dockerfile locally
 
 docker run -dp 5005:5000 -w /app -v "$(pwd):/app" --name flask-app flask-app-api sh -c "flask run --host 0.0.0.0"
 docker run -d -p 5005:5000 -w /app -v "$(pwd):/app" --name flask-app flask-app-api sh -c "flask run"
+
+# Redis queue
+docker run -d -w /app --name flask-app-redis flask-app-api sh -c "rq worker -u REDIS_URL emails"
+
+docker run --expose 6379 --name flask-app-redis -d redis
+
+--net flask-app-network
+
 docker run -w /app --name flask-app-redis flask-app-api sh -c "rq worker -u REDIS_URL emails"
 
+docker run -w /app --name flask-app-redis flask-app-api
 
 docker exec -it flask-app sh
 
