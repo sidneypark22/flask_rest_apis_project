@@ -1,0 +1,14 @@
+{% extends 'home.html' %}
+
+{% block container %}
+    <div class="top-pad">
+    {% for item in items %}
+        <h1>{{ item['name'] }}
+            <small>{{ item['description'] }}</small>
+        </h1>
+        <h3>
+            ${{ item['price'] }}
+        </h3>
+    {% endfor %}
+    </div>
+{% endblock %}

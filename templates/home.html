@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block container %}
+    <div class="top-pad">
+        {% for store in stores %}
+            <div class="well">
+                <h2>
+                    <a href="{{ url_for('Web.item', store_id=store['id']) }}">{{ store['name'] }}</a>
+                    <!-- <small>{{ store['name'] }}</small> -->
+                </h2>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

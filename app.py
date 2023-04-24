@@ -19,6 +19,8 @@ from resources.tag import blp as TagBlueprint
 from resources.user import blp as UserBlueprint
 from datetime import timedelta
 
+from resources.web import blp as WebBlueprint
+
 def create_app(db_url=None, testing: bool = True):
     app = Flask(__name__)
     load_dotenv()
@@ -113,6 +115,7 @@ def create_app(db_url=None, testing: bool = True):
     api.register_blueprint(ItemBlueprint)
     api.register_blueprint(TagBlueprint)
     api.register_blueprint(UserBlueprint)
+    api.register_blueprint(WebBlueprint)
     app.config
 
     return app
