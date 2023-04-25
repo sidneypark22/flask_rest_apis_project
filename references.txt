@@ -17,3 +17,7 @@ https://rest-apis-flask.teclado.com/docs/deploy_to_render/section_overview/
 
 code-repo:
 https://github.com/tecladocode/rest-apis-flask-python
+
+
+flask HTML web:
+https://code.tutsplus.com/tutorials/templating-with-jinja2-in-flask-essentials--cms-25571
