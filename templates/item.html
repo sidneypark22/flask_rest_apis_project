@@ -35,4 +35,20 @@
     {% endfor %}
 -->
     </div>
+    <div class="body">
+        <h3>Add a new item</h3>
+        <br>
+        <form method="post" action="{{ url_for('Web.item_add', store_id=store_id) }}">
+            <label for="itemname">Item Name:</label>
+            <input type="text" id="itemname" name="item_add_name">
+            <br><br>
+            <label for="itemnprice">Item Price:</label>
+            <input type="text" id="itemprice" name="item_add_price">
+            <br><br>
+            <label for="itemndesc">Item Description:</label>
+            <input type="text" id="itemdesc" name="item_add_desc">
+            <br><br>
+            <input type="submit" name="item_submit" value="Add Item"></td>
+        </form>
+    </div>
 {% endblock %}
