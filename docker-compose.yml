@@ -13,7 +13,7 @@ services:
   postgresdb:
     environment:
       - POSTGRES_PASSWORD=Passw0rd9
-    image: postgres:latest
+    image: postgres:14
     networks:
       - default
     ports:
